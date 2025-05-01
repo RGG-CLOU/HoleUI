@@ -1,0 +1,127 @@
+{
+  "name": "Default Repository",
+  "description": "Default app repository for HoleUI",
+  "version": "1.0.0",
+  "apps": [
+    {
+      "name": "AdGuard Home",
+      "description": "Network-wide ads & trackers blocking DNS server",
+      "image": "adguard/adguardhome",
+      "port": 3000,
+      "category": "Network",
+      "icon": "https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/client/src/components/UI/icons/logo.svg",
+      "tags": ["dns", "adblock", "privacy"],
+      "version": "latest",
+      "requirements": {
+        "memory": "512MB",
+        "storage": "1GB"
+      },
+      "config": {
+        "ports": {
+          "web": 3000,
+          "dns": 53
+        },
+        "volumes": [
+          "/etc/adguard:/opt/adguardhome/conf",
+          "/var/lib/adguard:/opt/adguardhome/work"
+        ]
+      }
+    },
+    {
+      "name": "Portainer",
+      "description": "Container management UI",
+      "image": "portainer/portainer-ce",
+      "port": 9000,
+      "category": "Management",
+      "icon": "https://www.portainer.io/hubfs/portainer-logo.svg",
+      "tags": ["docker", "containers", "management"],
+      "version": "latest",
+      "requirements": {
+        "memory": "256MB",
+        "storage": "100MB"
+      },
+      "config": {
+        "ports": {
+          "web": 9000
+        },
+        "volumes": [
+          "/var/run/docker.sock:/var/run/docker.sock",
+          "/portainer_data:/data"
+        ]
+      }
+    },
+    {
+      "name": "Home Assistant",
+      "description": "Open source home automation platform",
+      "image": "homeassistant/home-assistant",
+      "port": 8123,
+      "category": "Home Automation",
+      "icon": "https://www.home-assistant.io/images/home-assistant-logo.svg",
+      "tags": ["iot", "automation", "smart-home"],
+      "version": "latest",
+      "requirements": {
+        "memory": "2GB",
+        "storage": "2GB"
+      },
+      "config": {
+        "ports": {
+          "web": 8123
+        },
+        "volumes": [
+          "/config:/config"
+        ]
+      }
+    },
+    {
+      "name": "Jellyfin",
+      "description": "Media server",
+      "image": "jellyfin/jellyfin",
+      "port": 8096,
+      "category": "Media",
+      "icon": "https://jellyfin.org/images/jellyfin-logo.svg",
+      "tags": ["media", "streaming", "movies"],
+      "version": "latest",
+      "requirements": {
+        "memory": "1GB",
+        "storage": "10GB"
+      },
+      "config": {
+        "ports": {
+          "web": 8096
+        },
+        "volumes": [
+          "/config:/config",
+          "/media:/media"
+        ]
+      }
+    },
+    {
+      "name": "Pi-hole",
+      "description": "Network-wide ad blocking",
+      "image": "pihole/pihole",
+      "port": 80,
+      "category": "Network",
+      "icon": "https://pi-hole.net/wp-content/uploads/2016/12/Vortex-R.png",
+      "tags": ["dns", "adblock", "network"],
+      "version": "latest",
+      "requirements": {
+        "memory": "512MB",
+        "storage": "1GB"
+      },
+      "config": {
+        "ports": {
+          "web": 80,
+          "dns": 53
+        },
+        "volumes": [
+          "/etc/pihole:/etc/pihole",
+          "/etc/dnsmasq.d:/etc/dnsmasq.d"
+        ],
+        "environment": {
+          "TZ": "UTC",
+          "WEBPASSWORD": "changeme"
+        }
+      }
+    }
+  ]
+} 
